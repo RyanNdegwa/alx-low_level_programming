@@ -11,7 +11,7 @@ char cha = 'a';
 while (cha <= 'z')
 {
 putchar(cha);
-cha++;
+cha ++;
 }
 char ch = 'A';
 while (ch <= 'Z')
@@ -19,7 +19,7 @@ while (ch <= 'Z')
 putchar(ch);
 ch++;
 }
-printf("\n");
+
 return (0);
 }
 
