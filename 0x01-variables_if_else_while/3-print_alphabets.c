@@ -7,6 +7,12 @@
 */
 int main(void)
 {
+char ch = 'a';
+while (ch <= 'z')
+{
+printf("%c", ch);
+ch++;
+} 
 char ch = 'A';
 while (ch <= 'Z')
 {
