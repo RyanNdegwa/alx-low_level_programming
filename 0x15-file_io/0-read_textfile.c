@@ -1,4 +1,6 @@
 #include "main.h"
+#include <unistd.h>
+#include <fcntl.h>
 /**
 * read_textfile - Reads a text file and prints in POSIX stdout.
 * @filename: File 2 read.
@@ -6,7 +8,7 @@
 * Return: Actual number of letter it could read and print.
 */
 ssize_t read_textfile(const char *filename, size_t letters)
-{
+
 if (!filename)
 {
 return (0);
@@ -32,6 +34,7 @@ free(buf);
 close(file);
 return (0);
 }
+
 write_result = write(STDOUT_FILENO, buf, read_result);
 free(buf);
 close(file);
@@ -43,6 +46,7 @@ return (0);
 
 return (read_result);
 }
+
 
 
 
