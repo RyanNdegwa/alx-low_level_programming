@@ -1,6 +1,4 @@
 #include "main.h"
-#include <unistd.h>
-#include <fcntl.h>
 /**
 * read_textfile - Reads a text file and prints in POSIX stdout.
 * @filename: File 2 read.
@@ -8,45 +6,24 @@
 * Return: Actual number of letter it could read and print.
 */
 ssize_t read_textfile(const char *filename, size_t letters)
+{
+int fdest, size;
+char *buffer;
+buffer = malloc(sizeof(char) * letters);
 
+/*Check content file*/
 if (!filename)
-{
 return (0);
-}
-
-file = open(filename, O_RDONLY);
-if (file == -1)
-{
+/*Check value of buffer*/
+if (!buffer)
 return (0);
-}
-
-buf = malloc(letters);
-if (!buf)
-{
-close(file);
+/*Open file*/
+fdest = open(filename, O_RDONLY);
+/*Read file*/
+size = write(STDOUT_FILENO, buffer, read(fdest, buffer, letters));
+if (fdest == -1 || size == -1)
 return (0);
+close(fdest);
+free(buffer);
+return (size);
 }
-
-read_result = read(file, buf, letters);
-if (read_result == -1)
-{
-free(buf);
-close(file);
-return (0);
-}
-
-write_result = write(STDOUT_FILENO, buf, read_result);
-free(buf);
-close(file);
-
-if (write_result == -1 || write_result != read_result)
-{
-return (0);
-}
-
-return (read_result);
-}
-
-
-
-
